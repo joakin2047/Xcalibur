@@ -1,0 +1,130 @@
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8b500;
+    }
+
+    header {
+      background-color: #f8b500;
+      width: 100%;
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      gap: 15px; /* espacio de 15 píxeles entre elementos */
+    }
+
+    .nav-left a,
+    .nav-right a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+
+/* CODE DEL SUBMENU*/
+.has-submenu {
+  position: relative;
+  list-style: none;
+}
+
+.has-submenu > a {
+  position: relative;
+  padding-right: 25px; /* Espacio para la flecha */
+  display: inline-block; /* Necesario para el posicionamiento de la flecha */
+}
+
+.menu-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+}
+
+.has-submenu:hover .menu-arrow {
+  transform: translateY(-50%) rotate(270deg);
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%; /* Ancho mínimo igual al botón padre */
+  width: auto; /* Ancho automático según contenido */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 1000;
+  list-style: none;
+  padding: 5px 0; /* Padding vertical solamente */
+}
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap; /* Evita saltos de línea */
+}
+
+.submenu li:last-child {
+  border-bottom: none;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.submenu li a:hover {
+  background-color: #f5f5f5;
+}
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 100px;
+      height: auto;
+    }
+
+    .logo span {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    

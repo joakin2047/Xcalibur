@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjetas de Postres</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    section {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .grid-container-postres {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .card-postres {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 320px;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s ease-out;
+      position: relative;
+    }
+
+    .card-postres.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card-postres img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-body-postres {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-body-postres h2 {
+      font-size: 1.4rem;
+      color: #e63946;
+    }
+
+    .card-body-postres p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Información nutricional */
+    .product-info-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .product-info-bottom .serving {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .product-info-bottom .nutrition {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #333;
+    }
+
+    .product-info-bottom .nutrition div {
+      flex: 1 1 18%; /* Ajusta para 5 elementos */
+      background: #f1f1f1;
+      border-radius: 0.5rem;
+      padding: 0.3rem;
+    }
+
+    .product-info-bottom .nutrition div strong {
+      font-size: 0.85rem;
+      color: #e63946;
+    }
+
+    .product-info-bottom .nutrition div span {
+      font-size: 0.75rem;
+      color: #2a9d8f;
+    }
+
+    .ingredientes-postres {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .precio-postres {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #2a9d8f;
+    }
+
+    .card-footer-postres {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center; /* Centra precio y carrito */
+      align-items: center;
+      gap: 1rem; /* Espacio entre precio y botón */
+      position: relative;
+    }
+
+    .card-btn-postres {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: #e63946;
+    }
+
+    /* Alert flotante */
+    .alert-postres {
+      position: absolute;
+      bottom: 70px;
+      background: #e63946;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .alert-postres.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .alert-postres a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="grid-container-postres">
+      <!-- Tarjeta 1 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?cake" alt="Pastel">
+        <div class="card-body-postres">
+          <h2>Pastel de Chocolate</h2>
+          <p>Delicioso pastel esponjoso con cobertura de chocolate.</p>
+
+          <!-- Información nutricional -->
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: cacao, harina, huevos, azúcar</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$4.50</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?donut" alt="Donas">
+        <div class="card-body-postres">
+          <h2>Donas Glaseadas</h2>
+          <p>Suaves donas cubiertas con un dulce glaseado.</p>
+
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: harina, leche, azúcar, glaseado</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$2.00</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?icecream" alt="Helado">
+        <div class="card-body-postres">
+          <h2>Helado Vainilla</h2>
+          <p>Refrescante helado artesanal de vainilla.</p>
+
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: leche, vainilla natural, crema</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$3.00</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?pancakes" alt="Pancakes">
+        <div class="card-body-postres">
+          <h2>Pancakes</h2>
+          <p>Esponjosos pancakes con miel y mantequilla.</p>
+
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: harina, leche, huevos, miel</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$5.00</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?brownie" alt="Brownie">
+        <div class="card-body-postres">
+          <h2>Brownie</h2>
+          <p>Brownie suave con trozos de chocolate.</p>
+
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: cacao, azúcar, harina, mantequilla</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$3.50</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6 -->
+      <div class="card-postres">
+        <img src="https://source.unsplash.com/400x300/?cupcake" alt="Cupcake">
+        <div class="card-body-postres">
+          <h2>Cupcake</h2>
+          <p>Pequeño pastel decorado con crema.</p>
+
+          <div class="product-info-bottom">
+            <p class="serving">🍽️ Serving size: 340 g</p>
+            <div class="nutrition">
+              <div><strong>ENERGY</strong><br>430 Cal<br><span>DI 22%</span></div>
+              <div><strong>PROTEIN</strong><br>27 g<br><span>DI 58%</span></div>
+              <div><strong>FAT</strong><br>12 g<br><span>DI 19%</span></div>
+              <div><strong>SAT FAT</strong><br>3.0 g<br><span>DI 15%</span></div>
+              <div><strong>CARBS</strong><br>32 g<br><span>DI 12%</span></div>
+            </div>
+          </div>
+
+          <div class="ingredientes-postres">Ingredientes: harina, crema, azúcar, mantequilla</div>
+          <div class="card-footer-postres">
+            <div class="precio-postres">$2.50</div>
+            <button class="card-btn-postres">🛒</button>
+            <div class="alert-postres"><a href="https://tuspedidos.com">Ordene ahora</a></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Animación de aparición al hacer scroll
+    const cards = document.querySelectorAll('.card-postres');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+
+    // Mostrar alert flotante al pasar sobre el carrito
+    document.querySelectorAll('.card-btn-postres').forEach((btn) => {
+      btn.addEventListener('mouseenter', () => {
+        const alert = btn.nextElementSibling;
+        alert.classList.add('show');
+        setTimeout(() => {
+          alert.classList.remove('show');
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>
